@@ -20,7 +20,7 @@ if($loginDetected != 1)
     $_SESSION["LoginIncorrect"] = 1;
     header('Location:index.php');
 }
-else if(($result['Password'] != $pass) || ($result['Login'] != $login))
+else if(($result['Password'] != $pass) || (strtoupper($result['Login']) != strtoupper($login)))
 {
     $_SESSION["LoginIncorrect"] = 2;
     header('Location:index.php');
@@ -28,15 +28,18 @@ else if(($result['Password'] != $pass) || ($result['Login'] != $login))
 
 if($result['isSupervisor'] == 1)
 {
-    header( "refresh:5;url=supervisor.php" );
+    header( "refresh:2;url=supervisor.php" );
+    $_SESSION['Login'] = $login;
 }
 else if($result['isWorker'] == 1)
 {
-    header( "refresh:5;url=worker.php" );
+    header( "refresh:2;url=worker.php" );
+    $_SESSION['Login'] = $login;
 }
 else if($result['isManager'] == 1)
 {
-    header( "refresh:5;url=manager.php" );
+    header( "refresh:2;url=manager.php" );
+    $_SESSION['Login'] = $login;
 }
 
 ?>

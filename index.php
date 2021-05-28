@@ -14,21 +14,20 @@ session_start();
     if(isset($_SESSION["LoginIncorrect"]) && $_SESSION["LoginIncorrect"] == 1)
     {
         echo 'These credentials do not exist.';
-        $_SESSION['LoginIncorrect'] = 0;
+        unset($_SESSION['LoginIncorrect']);
     }
     else if(isset($_SESSION["LoginIncorrect"]) && $_SESSION["LoginIncorrect"] == 2)
     {
         echo 'The login or/and the password are incorrect.';
-        $_SESSION['LoginIncorrect'] = 0;
+        unset($_SESSION['LoginIncorrect']);
     }
-
-
-
+    session_destroy();
 ?>
 
         <form method="post" action="welcome.php" >
             <label for="fname">Login:</label><br>
-            <input type="text" id="login" name="login" required><br>
+            <!-- No autocomplete from previous logins -->
+            <input type="text" id="login" name="login" autocomplete="off" autofocus required><br> 
             <label for="lname">Password:</label><br>
             <input type="password" name="password" id="password"><br>
             <button type="submit">Log in</button>
