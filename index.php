@@ -31,7 +31,15 @@ session_start();
             <label for="lname">Password:</label><br>
             <input type="password" name="password" id="password"><br>
             <button type="submit">Log in</button>
+            <button id="myButton" class="float-left submit-button" >Sign up</button>
         </form>
+        
+
+<script type="text/javascript">
+    document.getElementById("myButton").onclick = function () {
+        location.href = "registrationform.php";
+    };
+</script>
 
     </body>
 </html>

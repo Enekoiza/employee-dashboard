@@ -22,10 +22,11 @@ $login = $_SESSION['Login'];
       <a class="navbar-brand" href="#">PORTAL</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="index.php">Home</a></li>
+      <li class="active"><a href="worker.php">Home</a></li>
       <li><a href="#">Page 1</a></li>
       <li><a href="#">Page 2</a></li>
       <li><a href="#">Page 3</a></li>
+      <li><a href="index.php">Log out</a></li>
     </ul>
   </div>
 </nav>

@@ -15,6 +15,16 @@ $sth->execute();
 $result = $sth->fetch();
 $loginDetected = $sth->rowcount();
 
+if($loginDetected > 0){
+    $loginID = $result['ID'];
+    $sqlstatement1 = 'SELECT FName, LName FROM persondetails WHERE EmployeeID = :x';
+    $sth1 = $conn->prepare($sqlstatement1);
+    $sth1->bindParam(':x', $loginID, PDO::PARAM_STR);
+    $sth1->execute();
+    $details = $sth1->fetch();
+}
+
+
 if($loginDetected != 1)
 {
     $_SESSION["LoginIncorrect"] = 1;
@@ -51,7 +61,15 @@ else if($result['isManager'] == 1)
         <title>Welcome Page</title>
     </head>
     <body>
-<h1>WELCOME <?php echo $login; ?></h1>
+<h1>WELCOME <?php echo $details['FName'] . ' ' . $details['LName']; ?></h1>
+<?php
+
+$msg = "Probando emails with php";
+$headers = "From: eneko.izaguirre@outlook.com";
+
+// mail("enizamartin@gmail.com", "Prueba correo PHP", $msg, $headers);
+
+?>
 
 <p>You will be redirected to your portal in 5 seconds.</p>
         
